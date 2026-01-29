@@ -1,0 +1,966 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Your Name | Financial Analyst Portfolio</title>
+  <meta name="description" content="Financial Analyst portfolio showcasing SQL, Power BI, and financial modeling projects. Expert in P&L analysis, database management, and business intelligence.">
+  <meta name="keywords" content="financial analyst, SQL, Power BI, financial modeling, data analyst, business intelligence, T-SQL">
+
+  <!-- Open Graph tags for LinkedIn sharing -->
+  <meta property="og:title" content="Your Name | Financial Analyst Portfolio">
+  <meta property="og:description" content="Portfolio showcasing financial analysis, SQL, and BI projects">
+  <meta property="og:type" content="website">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  <style>
+    :root {
+      --primary: #191c40;
+      --secondary: #b29758;
+      --bg: #f8fafc;
+      --text: #22223b;
+      --accent: #c3c0c0;
+      --accent-light: #5c5f7c;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Roboto', Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      scroll-behavior: smooth;
+    }
+
+    /* Skip link for accessibility */
+    .skip-link {
+      position: absolute;
+      top: -40px;
+      left: 0;
+      background: var(--primary);
+      color: white;
+      padding: 8px;
+      text-decoration: none;
+      z-index: 100;
+    }
+    .skip-link:focus {
+      top: 0;
+    }
+
+    header {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(120deg, var(--primary) 60%, var(--secondary) 100%);
+      overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 100%;
+      z-index: 0;
+      pointer-events: none;
+    }
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      color: #fff;
+      padding: 2rem;
+      max-width: 900px;
+    }
+    .hero-content h1 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      letter-spacing: 2px;
+      animation: fadeInDown 1s;
+    }
+    .hero-content p {
+      font-size: 1.3rem;
+      margin-bottom: 2rem;
+      animation: fadeInUp 1.2s;
+    }
+    .hero-buttons {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      animation: fadeInUp 1.4s;
+    }
+    .hero-content a.cta {
+      display: inline-block;
+      background: var(--secondary);
+      color: #fff;
+      padding: 0.8rem 2rem;
+      border-radius: 30px;
+      font-weight: 500;
+      text-decoration: none;
+      font-size: 1.1rem;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+      transition: all 0.3s;
+    }
+    .hero-content a.cta:hover {
+      background: #c9a865;
+      transform: translateY(-2px);
+    }
+    .hero-content a.cta-secondary {
+      background: transparent;
+      border: 2px solid #fff;
+      color: #fff;
+    }
+    .hero-content a.cta-secondary:hover {
+      background: rgba(255,255,255,0.1);
+    }
+
+    nav {
+      position: fixed;
+      top: 0; left: 0; width: 100%;
+      background: rgba(255,255,255,0.98);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+      z-index: 10;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.7rem 2rem;
+      transition: background 0.3s;
+    }
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .nav-logo img {
+      height: 40px;
+      width: auto;
+    }
+    nav ul {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+    nav a {
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 1rem;
+      transition: color 0.2s;
+    }
+    nav a:hover {
+      color: var(--secondary);
+    }
+
+    section {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 4rem 1.5rem;
+    }
+    .section-title {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 2.2rem;
+      color: var(--primary);
+      margin-bottom: 2rem;
+      text-align: center;
+      letter-spacing: 1px;
+    }
+
+    /* About */
+    .about {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 2.5rem;
+      justify-content: center;
+    }
+    .about-img {
+      flex: 0 0 180px;
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      background: var(--accent);
+      overflow: hidden;
+      box-shadow: 0 4px 24px rgba(25,28,64,0.12);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .about-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .about-text {
+      flex: 1 1 320px;
+      font-size: 1.15rem;
+    }
+    .about-text p {
+      margin-bottom: 1rem;
+    }
+    .about-stats {
+      display: flex;
+      gap: 2rem;
+      margin-top: 1.5rem;
+      flex-wrap: wrap;
+    }
+    .stat-item {
+      text-align: center;
+    }
+    .stat-number {
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--secondary);
+    }
+    .stat-label {
+      font-size: 0.9rem;
+      color: #666;
+    }
+
+    /* Projects */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 2rem;
+    }
+    .project-card {
+      background: #fff;
+      border-radius: 18px;
+      box-shadow: 0 4px 24px rgba(25,28,64,0.08);
+      padding: 0;
+      transition: transform 0.18s, box-shadow 0.18s;
+      position: relative;
+      overflow: hidden;
+      min-height: 380px;
+      display: flex;
+      flex-direction: column;
+      animation: fadeInUp 1s;
+      text-decoration: none;
+      color: inherit;
+    }
+    .project-image {
+      width: 100%;
+      height: 180px;
+      overflow: hidden;
+      position: relative;
+    }
+    .project-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+    }
+    .project-card:hover .project-image img {
+      transform: scale(1.05);
+    }
+    .project-content {
+      padding: 1.5rem;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .project-card:hover {
+      transform: translateY(-8px) scale(1.03);
+      box-shadow: 0 8px 32px rgba(25,28,64,0.15);
+    }
+    .project-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 0.5rem;
+    }
+    .project-desc {
+      font-size: 1rem;
+      margin-bottom: 1rem;
+      color: #444;
+      line-height: 1.5;
+    }
+    .project-metrics {
+      background: #f0f9ff;
+      padding: 0.5rem;
+      border-radius: 8px;
+      margin-bottom: 1rem;
+      font-size: 0.9rem;
+      color: #0369a1;
+      font-weight: 500;
+    }
+    .project-tags {
+      margin-bottom: 1rem;
+    }
+    .project-tag {
+      display: inline-block;
+      background: var(--accent);
+      color: var(--primary);
+      font-size: 0.85rem;
+      border-radius: 12px;
+      padding: 0.2rem 0.8rem;
+      margin-right: 0.5rem;
+      margin-bottom: 0.5rem;
+    }
+    .project-links {
+      display: flex;
+      gap: 0.8rem;
+      margin-top: auto;
+    }
+    .btn-github, .btn-demo {
+      flex: 1;
+      text-align: center;
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: all 0.2s;
+    }
+    .btn-github {
+      background: var(--primary);
+      color: white;
+    }
+    .btn-github:hover {
+      background: var(--accent-light);
+    }
+    .btn-demo {
+      background: var(--secondary);
+      color: white;
+    }
+    .btn-demo:hover {
+      background: #c9a865;
+    }
+
+    /* Skills */
+    .skills-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+    .skill-category {
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 2px 12px rgba(25,28,64,0.07);
+      padding: 1.5rem;
+    }
+    .skill-category h3 {
+      color: var(--primary);
+      margin-bottom: 1rem;
+      font-size: 1.2rem;
+      border-bottom: 2px solid var(--secondary);
+      padding-bottom: 0.5rem;
+    }
+    .skills-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+    }
+    .skill {
+      background: var(--accent);
+      border-radius: 8px;
+      padding: 0.5rem 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.95rem;
+      color: var(--primary);
+      font-weight: 500;
+      transition: all 0.2s;
+    }
+    .skill i {
+      font-size: 1.2rem;
+      color: var(--secondary);
+    }
+    .skill:hover {
+      background: var(--secondary);
+      color: white;
+    }
+    .skill:hover i {
+      color: white;
+    }
+
+    /* Certifications */
+    .cert-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+    .cert-item {
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 2px 12px rgba(25,28,64,0.07);
+      padding: 1.5rem;
+      border-left: 4px solid var(--secondary);
+      transition: transform 0.2s;
+    }
+    .cert-item:hover {
+      transform: translateX(5px);
+    }
+    .cert-title {
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 0.3rem;
+    }
+    .cert-issuer {
+      color: var(--secondary);
+      font-size: 0.95rem;
+      margin-bottom: 0.3rem;
+    }
+    .cert-date {
+      color: #666;
+      font-size: 0.9rem;
+    }
+
+    /* Contact */
+    .contact-form {
+      max-width: 500px;
+      margin: 0 auto;
+      background: #fff;
+      border-radius: 16px;
+      box-shadow: 0 4px 24px rgba(25,28,64,0.08);
+      padding: 2rem 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+      animation: fadeInUp 1s;
+    }
+    .contact-form input, .contact-form textarea, .contact-form select {
+      width: 100%;
+      padding: 0.8rem;
+      border: 1px solid var(--accent);
+      border-radius: 8px;
+      font-size: 1rem;
+      font-family: inherit;
+      resize: none;
+    }
+    .contact-form input:focus, .contact-form textarea:focus, .contact-form select:focus {
+      outline: none;
+      border-color: var(--secondary);
+    }
+    .contact-form button {
+      background: var(--primary);
+      color: #fff;
+      border: none;
+      padding: 0.8rem;
+      border-radius: 8px;
+      font-size: 1.1rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .contact-form button:hover {
+      background: var(--secondary);
+    }
+    .privacy-notice {
+      font-size: 0.85rem;
+      color: #666;
+      text-align: center;
+    }
+    .contact-links {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      margin-top: 1.5rem;
+    }
+    .contact-links a {
+      color: var(--primary);
+      font-size: 1.7rem;
+      transition: color 0.2s;
+    }
+    .contact-links a:hover {
+      color: var(--secondary);
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 2rem 1rem;
+      background: var(--primary);
+      color: #fff;
+    }
+    footer p {
+      margin: 0.3rem 0;
+    }
+
+    /* Animations */
+    @keyframes fadeInDown {
+      from { opacity: 0; transform: translateY(-40px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(40px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      nav {
+        flex-direction: column;
+        padding: 0.5rem 1rem;
+      }
+      nav ul {
+        gap: 1rem;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+      .nav-logo img {
+        height: 35px;
+      }
+      .about { 
+        flex-direction: column; 
+        gap: 1.5rem; 
+      }
+      .about-img { 
+        margin-bottom: 1rem; 
+      }
+      .section-title { 
+        font-size: 1.7rem; 
+      }
+      .hero-content h1 { 
+        font-size: 2.1rem; 
+      }
+      .hero-content p {
+        font-size: 1.1rem;
+      }
+      .about-stats {
+        justify-content: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <nav aria-label="Main navigation">
+    <div class="nav-logo">
+      <img src="Gemini_Generated_Image_rxxzr1rxxzr1rxxz.jpg" alt="MS Logo">
+    </div>
+    <ul role="menubar">
+      <li role="none"><a href="#about" role="menuitem">About</a></li>
+      <li role="none"><a href="#projects" role="menuitem">Projects</a></li>
+      <li role="none"><a href="#skills" role="menuitem">Skills</a></li>
+      <li role="none"><a href="#certifications" role="menuitem">Certifications</a></li>
+      <li role="none"><a href="#contact" role="menuitem">Contact</a></li>
+    </ul>
+  </nav>
+
+  <header>
+    <canvas class="hero-bg" id="bg-canvas"></canvas>
+    <div class="hero-content">
+      <h1>Your Name</h1>
+      <p>Financial Analyst | Business Intelligence Professional<br>Transforming financial data into strategic insights through SQL, Power BI, and advanced analytics to drive informed business decisions.</p>
+      <div class="hero-buttons">
+        <a href="#projects" class="cta">View Projects</a>
+        <a href="resume.pdf" download class="cta cta-secondary">
+          <i class="fas fa-download"></i> Download Resume
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main id="main-content">
+    <section id="about">
+      <h2 class="section-title">About Me</h2>
+      <div class="about">
+        <div class="about-img">
+          <img src="images/avatar.jpg" alt="Professional headshot">
+        </div>
+        <div class="about-text">
+          <p>💼 Junior Business Analyst with expertise in SQL database management and financial modeling. Currently transitioning from software development into financial analysis, bringing strong technical capabilities and data-driven decision-making skills.</p>
+          <p>📊 Specialized in developing custom automation solutions, database optimization, and business intelligence. Proven track record in shift scheduling systems, P&L analysis, and financial reporting for the banking & finance sector.</p>
+          <div class="about-stats">
+            <div class="stat-item">
+              <div class="stat-number">5+</div>
+              <div class="stat-label">Projects Completed</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-number">SQL</div>
+              <div class="stat-label">Primary Expertise</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-number">2+</div>
+              <div class="stat-label">Years Experience</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects">
+      <h2 class="section-title">Featured Projects</h2>
+      <div class="projects-grid">
+
+        <div class="project-card">
+          <div class="project-image">
+            <img src="images/financial-dashboard.jpg" alt="Financial Dashboard" loading="lazy">
+          </div>
+          <div class="project-content">
+            <div>
+              <div class="project-title">P&L Analysis Dashboard</div>
+              <div class="project-desc">Comprehensive Power BI dashboard analyzing profit & loss statements, balance sheets, and cash flow statements with real-time KPI tracking for executive decision-making.</div>
+              <div class="project-metrics">
+                <i class="fas fa-chart-line"></i> Reduced reporting time by 40% | Analyzed $2M+ quarterly revenue
+              </div>
+              <div class="project-tags">
+                <span class="project-tag">Power BI</span>
+                <span class="project-tag">DAX</span>
+                <span class="project-tag">Financial Modeling</span>
+                <span class="project-tag">P&L Analysis</span>
+              </div>
+            </div>
+            <div class="project-links">
+              <a href="https://github.com/yourusername/pl-dashboard" class="btn-github">
+                <i class="fab fa-github"></i> Code
+              </a>
+              <a href="#" class="btn-demo">
+                <i class="fas fa-external-link-alt"></i> Live Demo
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="project-image">
+            <img src="images/database-design.jpg" alt="SQL Database" loading="lazy">
+          </div>
+          <div class="project-content">
+            <div>
+              <div class="project-title">Shift Scheduling Database System</div>
+              <div class="project-desc">Custom-built shift management application (ScheduleManager.py) with SQL Server backend. Features include automated scheduling, constraint optimization, and comprehensive error logging with data integrity controls.</div>
+              <div class="project-metrics">
+                <i class="fas fa-database"></i> Optimized query performance by 60% | Manages 500+ employee schedules
+              </div>
+              <div class="project-tags">
+                <span class="project-tag">SQL Server</span>
+                <span class="project-tag">T-SQL</span>
+                <span class="project-tag">Python</span>
+                <span class="project-tag">Database Design</span>
+                <span class="project-tag">ETL</span>
+              </div>
+            </div>
+            <div class="project-links">
+              <a href="https://github.com/yourusername/schedule-manager" class="btn-github">
+                <i class="fab fa-github"></i> Code
+              </a>
+              <a href="#" class="btn-demo">
+                <i class="fas fa-file-alt"></i> Documentation
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="project-image">
+            <img src="images/credit_card_default.jpg" alt="Credit Risk Assessment" loading="lazy">
+          </div>
+          <div class="project-content">
+            <div>
+              <div class="project-title">Credit Risk Assessment Model</div>
+              <div class="project-desc">Machine learning classification model predicting credit card default risk using customer payment history, demographic data, and credit utilization patterns. Helps financial institutions assess creditworthiness and reduce default risk.</div>
+              <div class="project-metrics">
+                <i class="fas fa-shield-alt"></i> Achieved 85% accuracy in risk prediction | Analyzed 30,000+ customer records
+              </div>
+              <div class="project-tags">
+                <span class="project-tag">Financial Modeling</span>
+                <span class="project-tag">Risk Assessment</span>
+                <span class="project-tag">Python</span>
+                <span class="project-tag">Classification</span>
+              </div>
+            </div>
+            <div class="project-links">
+              <a href="https://github.com/kessiezhang/Credit_Default_Classification/blob/main/credit_card_default.ipynb" class="btn-github">
+                <i class="fab fa-github"></i> Code
+              </a>
+              <a href="#" class="btn-demo">
+                <i class="fas fa-chart-bar"></i> Results
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="project-image">
+            <img src="images/revenue-forecast.jpg" alt="Revenue Forecasting" loading="lazy">
+          </div>
+          <div class="project-content">
+            <div>
+              <div class="project-title">Revenue Forecasting & Budgeting</div>
+              <div class="project-desc">Time series analysis model for quarterly revenue projections using SQL data extraction, Python statistical modeling, and Excel-based budget variance analysis. Incorporates seasonality and trend components.</div>
+              <div class="project-metrics">
+                <i class="fas fa-chart-line"></i> 92% forecast accuracy | 3-year historical analysis
+              </div>
+              <div class="project-tags">
+                <span class="project-tag">Time Series</span>
+                <span class="project-tag">Forecasting</span>
+                <span class="project-tag">Excel</span>
+                <span class="project-tag">SQL</span>
+              </div>
+            </div>
+            <div class="project-links">
+              <a href="https://github.com/yourusername/revenue-forecast" class="btn-github">
+                <i class="fab fa-github"></i> Code
+              </a>
+              <a href="#" class="btn-demo">
+                <i class="fas fa-file-excel"></i> Excel Model
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="project-image">
+            <img src="images/kpi-dashboard.jpg" alt="Operational KPI Dashboard" loading="lazy">
+          </div>
+          <div class="project-content">
+            <div>
+              <div class="project-title">Operational Performance Analytics</div>
+              <div class="project-desc">Interactive Tableau dashboard tracking operational efficiency metrics including cost variance analysis, productivity ratios, and performance benchmarking against industry standards.</div>
+              <div class="project-metrics">
+                <i class="fas fa-tachometer-alt"></i> Tracks 15+ KPIs | Real-time data refresh
+              </div>
+              <div class="project-tags">
+                <span class="project-tag">Tableau</span>
+                <span class="project-tag">KPI Development</span>
+                <span class="project-tag">Data Visualization</span>
+                <span class="project-tag">SQL</span>
+              </div>
+            </div>
+            <div class="project-links">
+              <a href="https://github.com/yourusername/kpi-dashboard" class="btn-github">
+                <i class="fab fa-github"></i> Code
+              </a>
+              <a href="#" class="btn-demo">
+                <i class="fas fa-external-link-alt"></i> Dashboard
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="project-image">
+            <img src="images/financial-ratios.jpg" alt="Financial Ratio Analysis" loading="lazy">
+          </div>
+          <div class="project-content">
+            <div>
+              <div class="project-title">Financial Ratio Analysis Tool</div>
+              <div class="project-desc">Interactive Excel tool with Power Query for calculating and visualizing liquidity, profitability, and leverage ratios. Automated data refresh from SQL database with dynamic scenario analysis capabilities.</div>
+              <div class="project-metrics">
+                <i class="fas fa-calculator"></i> Analyzes 20+ financial ratios | Automated quarterly reporting
+              </div>
+              <div class="project-tags">
+                <span class="project-tag">Excel</span>
+                <span class="project-tag">Financial Ratios</span>
+                <span class="project-tag">Power Query</span>
+                <span class="project-tag">Valuation</span>
+              </div>
+            </div>
+            <div class="project-links">
+              <a href="https://github.com/yourusername/financial-ratios" class="btn-github">
+                <i class="fab fa-github"></i> Code
+              </a>
+              <a href="#" class="btn-demo">
+                <i class="fas fa-download"></i> Template
+              </a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <section id="skills">
+      <h2 class="section-title">Technical Skills</h2>
+      <div class="skills-container">
+
+        <div class="skill-category">
+          <h3><i class="fas fa-database"></i> Database & Query Languages</h3>
+          <div class="skills-list">
+            <div class="skill"><i class="fas fa-code"></i> SQL & T-SQL</div>
+            <div class="skill"><i class="fas fa-server"></i> SQL Server Management Studio</div>
+            <div class="skill"><i class="fas fa-project-diagram"></i> Database Design</div>
+            <div class="skill"><i class="fas fa-bolt"></i> Query Optimization</div>
+            <div class="skill"><i class="fas fa-exchange-alt"></i> ETL Processes</div>
+          </div>
+        </div>
+
+        <div class="skill-category">
+          <h3><i class="fas fa-chart-bar"></i> Business Intelligence & Visualization</h3>
+          <div class="skills-list">
+            <div class="skill"><i class="fas fa-chart-line"></i> Power BI</div>
+            <div class="skill"><i class="fas fa-table"></i> Tableau</div>
+            <div class="skill"><i class="fas fa-file-excel"></i> Excel (Advanced)</div>
+            <div class="skill"><i class="fas fa-calculator"></i> DAX</div>
+            <div class="skill"><i class="fas fa-filter"></i> Power Query</div>
+          </div>
+        </div>
+
+        <div class="skill-category">
+          <h3><i class="fab fa-python"></i> Programming & Analysis</h3>
+          <div class="skills-list">
+            <div class="skill"><i class="fab fa-python"></i> Python</div>
+            <div class="skill"><i class="fas fa-table"></i> Pandas</div>
+            <div class="skill"><i class="fas fa-chart-area"></i> NumPy</div>
+            <div class="skill"><i class="fas fa-chart-pie"></i> Data Visualization</div>
+            <div class="skill"><i class="fas fa-robot"></i> Automation Scripts</div>
+          </div>
+        </div>
+
+        <div class="skill-category">
+          <h3><i class="fas fa-coins"></i> Financial Analysis</h3>
+          <div class="skills-list">
+            <div class="skill"><i class="fas fa-file-invoice-dollar"></i> Financial Modeling</div>
+            <div class="skill"><i class="fas fa-receipt"></i> P&L Analysis</div>
+            <div class="skill"><i class="fas fa-chart-line"></i> Budgeting & Forecasting</div>
+            <div class="skill"><i class="fas fa-percentage"></i> Financial Ratios</div>
+            <div class="skill"><i class="fas fa-money-check-alt"></i> Valuation Analysis</div>
+            <div class="skill"><i class="fas fa-balance-scale"></i> Variance Analysis</div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <section id="certifications">
+      <h2 class="section-title">Certifications & Education</h2>
+      <div class="cert-grid">
+        <div class="cert-item">
+          <div class="cert-title">SQL & Data Manipulation</div>
+          <div class="cert-issuer">Online Learning Platform</div>
+          <div class="cert-date">In Progress - 2026</div>
+        </div>
+        <div class="cert-item">
+          <div class="cert-title">Banking & Finance Fundamentals</div>
+          <div class="cert-issuer">Financial Institution Training</div>
+          <div class="cert-date">2025</div>
+        </div>
+        <div class="cert-item">
+          <div class="cert-title">Financial Modeling & Analysis</div>
+          <div class="cert-issuer">Business School / Online Course</div>
+          <div class="cert-date">In Progress - 2026</div>
+        </div>
+        <div class="cert-item">
+          <div class="cert-title">Power BI Data Analyst</div>
+          <div class="cert-issuer">Microsoft / Learning Platform</div>
+          <div class="cert-date">Planned - 2026</div>
+        </div>
+        <div class="cert-item">
+          <div class="cert-title">Python for Data Analysis</div>
+          <div class="cert-issuer">Online Learning Platform</div>
+          <div class="cert-date">2024</div>
+        </div>
+        <div class="cert-item">
+          <div class="cert-title">Advanced Excel for Business</div>
+          <div class="cert-issuer">Professional Development</div>
+          <div class="cert-date">2024</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <h2 class="section-title">Get In Touch</h2>
+      <form class="contact-form" action="https://formspree.io/f/xyzjazbd" method="POST">
+        <input type="text" name="name" placeholder="Your Name" required>
+        <input type="email" name="email" placeholder="Your Email" required>
+        <input type="tel" name="phone" placeholder="Phone Number (Optional)">
+        <select name="contact-method">
+          <option value="">Preferred Contact Method</option>
+          <option value="email">Email</option>
+          <option value="phone">Phone</option>
+          <option value="linkedin">LinkedIn</option>
+        </select>
+        <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
+        <button type="submit">Send Message</button>
+        <p class="privacy-notice">Your information will be kept confidential and used solely for communication purposes.</p>
+      </form>
+      <div class="contact-links">
+        <a href="mailto:your.email@example.com" title="Email" aria-label="Email"><i class="fas fa-envelope"></i></a>
+        <a href="https://www.linkedin.com/in/yourprofile/" target="_blank" title="LinkedIn" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+        <a href="https://github.com/yourusername" target="_blank" title="GitHub" aria-label="GitHub"><i class="fab fa-github"></i></a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2026 Your Name. Built with HTML, CSS, JavaScript</p>
+    <p>Last updated: January 2026</p>
+  </footer>
+
+  <script>
+    // Animated background (particles with reduced count for mobile)
+    const canvas = document.getElementById('bg-canvas');
+    const ctx = canvas.getContext('2d');
+    let particles = [];
+
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = document.querySelector('header').offsetHeight;
+    }
+
+    function createParticles() {
+      particles = [];
+      const particleCount = window.innerWidth < 768 ? 30 : 60;
+      for (let i = 0; i < particleCount; i++) {
+        particles.push({
+          x: Math.random() * canvas.width,
+          y: Math.random() * canvas.height,
+          r: Math.random() * 2.5 + 1.5,
+          dx: (Math.random() - 0.5) * 0.7,
+          dy: (Math.random() - 0.5) * 0.7,
+          alpha: Math.random() * 0.5 + 0.3
+        });
+      }
+    }
+
+    function drawParticles() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      for (let p of particles) {
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.r, 0, 2 * Math.PI);
+        ctx.fillStyle = `rgba(255,255,255,${p.alpha})`;
+        ctx.fill();
+        p.x += p.dx;
+        p.y += p.dy;
+        if (p.x < 0 || p.x > canvas.width) p.dx *= -1;
+        if (p.y < 0 || p.y > canvas.height) p.dy *= -1;
+      }
+      requestAnimationFrame(drawParticles);
+    }
+
+    window.addEventListener('resize', () => {
+      resizeCanvas();
+      createParticles();
+    });
+
+    resizeCanvas();
+    createParticles();
+    drawParticles();
+
+    // Smooth scroll for nav links
+    document.querySelectorAll('nav a').forEach(link => {
+      link.addEventListener('click', function(e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          window.scrollTo({
+            top: target.offsetTop - 80,
+            behavior: 'smooth'
+          });
+        }
+      });
+    });
+
+    // Scroll to top on hero button click
+    document.querySelector('.hero-content a.cta').addEventListener('click', function(e) {
+      e.preventDefault();
+      const target = document.querySelector(this.getAttribute('href'));
+      if (target) {
+        window.scrollTo({
+          top: target.offsetTop - 80,
+          behavior: 'smooth'
+        });
+      }
+    });
+  </script>
+</body>
+</html>
